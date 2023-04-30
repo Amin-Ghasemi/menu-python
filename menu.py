@@ -11,17 +11,17 @@ class Menu:
         self.list_options = list_options
         self.selected_option = -1
         self.options = {}
+        self.while_check = [True]
         for i in range(len(list_options)):
-            self.options[i] = f'      [ {i} ] - {list_options[i]}'
+            self.options[i] = f'     [ {i} ] - {list_options[i]}     '.center(50)
 
     def load_list_options(self) -> str:
-        print('\n')
         list_options_str = ''
         for o in self.options:
             if o == self.selected_option:
-                list_options_str += f"{Back.WHITE}{Fore.BLACK}{self.options.get(o)}{Back.BLACK}{Fore.WHITE}\n"
+                list_options_str += f"{Back.LIGHTWHITE_EX}{Fore.BLACK}{self.options.get(o)}{Back.BLACK}{Fore.LIGHTWHITE_EX}\n"
             else:
-                list_options_str += f"{Back.BLACK}{Fore.WHITE}{self.options.get(o)}{Back.WHITE}{Fore.BLACK}\n"
+                list_options_str += f"{Back.BLACK}{Fore.LIGHTWHITE_EX}{self.options.get(o)}{Back.LIGHTWHITE_EX}{Fore.BLACK}\n"
         return list_options_str
 
     def load_menu(self):
@@ -29,10 +29,10 @@ class Menu:
 
         print(self.load_list_options())
 
-        help_ = f'{Fore.BLUE}{Back.WHITE}Use UP(W) Or Down(S) Botton.'
+        help_ = f'{Fore.BLUE}{Back.LIGHTWHITE_EX}Use UP(W) Or Down(S) Botton.'
         print(help_)
 
-        while True:
+        while self.while_check[0]:
             key = keyboard.read_key()
             if key == 'up' or key.lower() == 'w':
                 system('clear')
@@ -51,7 +51,8 @@ class Menu:
                 print(self.load_list_options())
                 print(help_)
             elif key == 'enter':
-                break
+                # self.while_check[0] = False
+                return self.selected_option
             sleep(.2)
 
         return self.selected_option
