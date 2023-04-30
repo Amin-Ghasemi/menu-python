@@ -32,7 +32,7 @@ class Menu:
 
         print(self.load_list_options())
 
-        help_ = f'{Fore.LIGHTWHITE_EX}{Back.BLUE}Use Left < Or > Right Botton.'
+        help_ = f'{Fore.LIGHTWHITE_EX}{Back.BLUE}Use Left < Or > Right and Ctrl for Select'
         print(help_)
 
         while self.while_check[0]:
