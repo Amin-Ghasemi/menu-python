@@ -1,7 +1,7 @@
 from menu import Menu
 from time import sleep
 
-items = ['Mohammad', 'Amin', 'Ghasemi', 'Matin']
+items = ['Option 0, 'Option 1', 'Option 2', 'Option 3', 'Option 4', 'Exit']
 
 while True:
     menu = Menu(items)
