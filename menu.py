@@ -4,6 +4,7 @@ from time import sleep
 from colorama import init, Fore, Back, Style
 from typing import List
 import shutil
+import platform
 
 init(autoreset=True)
 
@@ -19,6 +20,16 @@ class Menu:
         for i in range(len(list_options)):
             self.options[i] = f'{list_options[i]}'.center(self.console_width)
 
+
+    def clear(self):
+        if platform.system() == 'Windose':
+            system('cls')
+        elif platform.system() == 'Linux':
+            system('clear')
+            system("stty -echo")
+        else:
+            pass
+
     def load_list_options(self) -> str:
         list_options_str = ''
         for o in self.options:
@@ -30,8 +41,7 @@ class Menu:
         return list_options_str
 
     def load_menu(self):
-        system("clear")
-        system("stty -echo")
+        self.clear()
 
         print(self.load_list_options())
 
@@ -41,7 +51,7 @@ class Menu:
         while self.while_check[0]:
             key = keyboard.read_key()
             if key == 'left' or key.lower() == 'w':
-                system('clear')
+                self.clear()
                 if self.selected_option < 0:
                     self.selected_option = len(self.list_options)-1
                 else:
@@ -49,7 +59,7 @@ class Menu:
                 print(self.load_list_options())
                 print(help_)
             elif key == "right" or key.lower() == 's':
-                system('clear')
+                self.clear()
                 if self.selected_option >= len(self.list_options):
                     self.selected_option = 0
                 else:
@@ -57,7 +67,13 @@ class Menu:
                 print(self.load_list_options())
                 print(help_)
             elif key == 'space':
-                system("stty echo")
+                if platform.system() == 'Windose':
+                    pass
+                elif platform.system() == 'Linux':
+                    system("stty -echo")
+                else:
+                    pass
+                
                 return self.selected_option
             sleep(.1)
 
