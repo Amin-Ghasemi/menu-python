@@ -22,7 +22,7 @@ class Menu:
 
 
     def clear(self):
-        if platform.system() == 'Windose':
+        if platform.system() == 'Windows':
             system('cls')
         elif platform.system() == 'Linux':
             system('clear')
@@ -67,13 +67,13 @@ class Menu:
                 print(self.load_list_options())
                 print(help_)
             elif key == 'space':
-                if platform.system() == 'Windose':
+                if platform.system() == 'Windows':
                     pass
                 elif platform.system() == 'Linux':
                     system("stty -echo")
                 else:
                     pass
-                
+
                 return self.selected_option
             sleep(.1)
 
